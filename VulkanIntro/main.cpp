@@ -198,7 +198,7 @@ private:
         vkDestroyShaderModule(device, fragShaderModule, nullptr);
         vkDestroyShaderModule(device, vertShaderModule, nullptr);
 
-        std::cout << "Graphics pipeline ~created\n";
+        std::cout << "Graphics pipeline created\n";
     }
 
 
@@ -212,8 +212,8 @@ private:
         if (vkCreateShaderModule(device, &createInfo, nullptr, &shaderModule) != VK_SUCCESS) {
             throw std::runtime_error("Failed to create shader module!");
         }
-        std::cout << "Shader Module created\n";
 
+        std::cout << "Shader Module created\n";
         return shaderModule;
     }
 
