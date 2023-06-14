@@ -2,7 +2,9 @@
 #define GLFW_INCLUDE_VULKAN
 #define GLFW_INCLUDE_VULKAN
 #define GLFW_EXPOSE_NATIVE_WIN32
+#define NOMINMAX
 
+#include <algorithm> 
 #include <GLFW/glfw3.h>
 #include <GLFW/glfw3native.h>
 #include <iostream>
@@ -74,7 +76,6 @@ private:
 
     void initVulkan() {
         createInstance();
-        // setupDebugMessenger(); (TODO: Validation Layer tutorial)
         createSurface();
         pickPhysicalDevice();
         createLogicalDevice();
@@ -84,6 +85,7 @@ private:
         if (glfwCreateWindowSurface(instance, window, nullptr, &surface) != VK_SUCCESS) {
             throw std::runtime_error("Failed to create window surface!");
         }
+        std::cout << "Surface created\n";
     }
 
     void createLogicalDevice() {
@@ -125,6 +127,7 @@ private:
 
         vkGetDeviceQueue(device, indices.graphicsFamily.value(), 0, &graphicsQueue);
         vkGetDeviceQueue(device, indices.presentFamily.value(), 0, &presentQueue);
+        std::cout << "Logical device created";
     }
 
     VkSurfaceFormatKHR chooseSwapSurfaceFormat(const std::vector<VkSurfaceFormatKHR>& availableFormats) {
@@ -147,7 +150,23 @@ private:
     }
 
     VkExtent2D chooseSwapExtent(const VkSurfaceCapabilitiesKHR& capabilities) {
-        // TODO
+        if (capabilities.currentExtent.width != std::numeric_limits<uint32_t>::max()) {
+            return capabilities.currentExtent;
+        }
+        else {
+            int width, height;
+            glfwGetFramebufferSize(window, &width, &height);
+
+            VkExtent2D actualExtent = {
+                static_cast<uint32_t>(width),
+                static_cast<uint32_t>(height)
+            };
+
+            actualExtent.width = std::clamp(actualExtent.width, capabilities.minImageExtent.width, capabilities.maxImageExtent.width);
+            actualExtent.height = std::clamp(actualExtent.height, capabilities.minImageExtent.height, capabilities.maxImageExtent.height);
+
+            return actualExtent;
+        }
     }
 
     // Creates Vulkan instance
@@ -189,8 +208,10 @@ private:
         VkResult result = vkCreateInstance(&createInfo, nullptr, &instance);
 
         if (vkCreateInstance(&createInfo, nullptr, &instance) != VK_SUCCESS) {
-            throw std::runtime_error("failed to create instance!");
+            throw std::runtime_error("Dailed to create instance!");
         }
+
+        std::cout << "Instance created\n";
     }
 
     void pickPhysicalDevice() {
@@ -214,6 +235,7 @@ private:
         if (physicalDevice == VK_NULL_HANDLE) {
             throw std::runtime_error("Failed to find a suitable GPU!");
         }
+        std::cout << "Found physical device\n";
     }
 
     SwapChainSupportDetails querySwapChainSupport(VkPhysicalDevice device) {
