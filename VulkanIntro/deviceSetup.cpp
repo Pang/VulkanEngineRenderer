@@ -52,7 +52,7 @@ namespace graphicsEngine {
     }
 
     // class member functions
-    DeviceSetup::DeviceSetup(Window& window) : window { window } {
+    DeviceSetup::DeviceSetup(Window &window) : window { window } {
         createInstance();
         setupDebugMessenger();
         createSurface();
