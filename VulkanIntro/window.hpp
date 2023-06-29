@@ -3,7 +3,7 @@
 #include <GLFW/glfw3.h>
 #include <string>
 
-namespace window {
+namespace graphicsEngine {
 
 	class Window {
 	public:
@@ -13,7 +13,9 @@ namespace window {
 		Window(const Window&) = delete;
 		Window& operator=(const Window&) = delete;
 
-		GLFWwindow* glfwWindow;
+
+		void createWindowSurface(VkInstance instance, VkSurfaceKHR* surface);
+		bool shouldClose() { return glfwWindowShouldClose(glfwWindow); }
 
 	private:
 		void initWindow();
@@ -22,5 +24,7 @@ namespace window {
 		const int height;
 
 		std::string windowName;
+		GLFWwindow *glfwWindow;
+
 	};
 }
