@@ -2,6 +2,10 @@
 #include "window.hpp"
 #include "deviceSetup.hpp"
 #include "pipelineSetup.hpp"
+#include "swapChainSetup.hpp"
+
+#include <memory>
+#include <vector>
 
 namespace graphicsEngine {
 	class App {
@@ -9,11 +13,26 @@ namespace graphicsEngine {
 		static constexpr int WIDTH = 800;
 		static constexpr int HEIGHT = 600;
 
+		App();
+		~App();
+
+		App(const App&) = delete;
+		void operator=(const App&) = delete;
+
 		void run();
 
 	private:
+		void createPipelineLayout();
+		void createPipeline();
+		void createCommandBuffers();
+		void drawFrame();
+
 		Window window{ WIDTH, HEIGHT, "Vulkan" };
 		DeviceSetup device{ window };
-		PipelineSetup pipelineSetup{ device, "shaders/vert.spv", "shaders/frag.spv", PipelineSetup::defaultPipelineConfigInfo(WIDTH, HEIGHT) };
+		SwapChainSetup swapChainSetup{ device, window.getExtent()};
+		std::unique_ptr<PipelineSetup> pipelineSetup;
+		VkPipelineLayout pipelineLayout;
+		std::vector<VkCommandBuffer> commandBuffer;
+		//{ device, "shaders/vert.spv", "shaders/frag.spv", PipelineSetup::defaultPipelineConfigInfo(WIDTH, HEIGHT) }
 	};
 }
