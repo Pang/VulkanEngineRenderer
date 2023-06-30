@@ -143,6 +143,7 @@
     <ClCompile Include="deviceSetup.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="pipelineSetup.cpp" />
+    <ClCompile Include="swapChainSetup.cpp" />
     <ClCompile Include="window.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -153,6 +154,7 @@
     <ClInclude Include="app.hpp" />
     <ClInclude Include="deviceSetup.hpp" />
     <ClInclude Include="pipelineSetup.hpp" />
+    <ClInclude Include="swapChainSetup.hpp" />
     <ClInclude Include="window.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
