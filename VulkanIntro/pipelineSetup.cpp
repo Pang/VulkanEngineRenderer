@@ -38,6 +38,10 @@ namespace graphicsEngine {
 
         return buffer;
 	}
+    
+    void PipelineSetup::bind(VkCommandBuffer commandBuffer) {
+        vkCmdBindPipeline(commandBuffer, VK_PIPELINE_BIND_POINT_GRAPHICS, graphicsPipeline);
+    }
 
     PipelineConfigInfo PipelineSetup::defaultPipelineConfigInfo(uint32_t width, uint32_t height)
     {
@@ -48,8 +52,8 @@ namespace graphicsEngine {
 
         configInfo.viewport.x = 0.0f;
         configInfo.viewport.y = 0.0f;
-        configInfo.viewport.width = (float)width;
-        configInfo.viewport.height = (float)height;
+        configInfo.viewport.width = static_cast<float>(width);
+        configInfo.viewport.height = static_cast<float>(height);
         configInfo.viewport.minDepth = 0.0f;
         configInfo.viewport.maxDepth = 1.0f;
 

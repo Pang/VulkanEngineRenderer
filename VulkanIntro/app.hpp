@@ -32,7 +32,6 @@ namespace graphicsEngine {
 		SwapChainSetup swapChainSetup{ device, window.getExtent()};
 		std::unique_ptr<PipelineSetup> pipelineSetup;
 		VkPipelineLayout pipelineLayout;
-		std::vector<VkCommandBuffer> commandBuffer;
-		//{ device, "shaders/vert.spv", "shaders/frag.spv", PipelineSetup::defaultPipelineConfigInfo(WIDTH, HEIGHT) }
+		std::vector<VkCommandBuffer> commandBuffers;
 	};
 }

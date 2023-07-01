@@ -29,6 +29,8 @@ namespace graphicsEngine {
 		PipelineSetup(const PipelineSetup&) = delete;
 		PipelineSetup& operator=(const PipelineSetup&) = delete;
 
+		void bind(VkCommandBuffer commandBuffer);
+
 		static std::vector<char> readFile(const std::string& filePath);
 		static PipelineConfigInfo defaultPipelineConfigInfo(uint32_t width, uint32_t height);
 
