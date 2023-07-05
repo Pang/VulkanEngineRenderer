@@ -4,6 +4,7 @@
 
 namespace graphicsEngine {
     App::App() {
+        loadModels();
         createPipelineLayout();
         createPipeline();
         createCommandBuffers();
@@ -20,6 +21,16 @@ namespace graphicsEngine {
 
         vkDeviceWaitIdle(device.device());
 	}
+
+    void App::loadModels() {
+        std::vector<Model::Vertex> vertices {
+            { {0.0, -0.5} },
+            { {0.5, 0.5} },
+            { {-0.5, 0.5} }
+        };
+
+        model = std::make_unique<Model>(device, vertices);
+    }
 
     void App::createPipelineLayout() {
         VkPipelineLayoutCreateInfo pipelineLayoutInfo{};
@@ -85,7 +96,8 @@ namespace graphicsEngine {
             vkCmdBeginRenderPass(commandBuffers[i], &renderPassInfo, VK_SUBPASS_CONTENTS_INLINE);
 
             pipelineSetup->bind(commandBuffers[i]);
-            vkCmdDraw(commandBuffers[i], 3, 1, 0, 0);
+            model->bind(commandBuffers[i]);
+            model->draw(commandBuffers[i]);
 
             vkCmdEndRenderPass(commandBuffers[i]);
             if (vkEndCommandBuffer(commandBuffers[i]) != VK_SUCCESS) {

@@ -3,6 +3,7 @@
 #include "deviceSetup.hpp"
 #include "pipelineSetup.hpp"
 #include "swapChainSetup.hpp"
+#include "model.hpp"
 
 #include <memory>
 #include <vector>
@@ -22,6 +23,7 @@ namespace graphicsEngine {
 		void run();
 
 	private:
+		void loadModels();
 		void createPipelineLayout();
 		void createPipeline();
 		void createCommandBuffers();
@@ -33,5 +35,6 @@ namespace graphicsEngine {
 		std::unique_ptr<PipelineSetup> pipelineSetup;
 		VkPipelineLayout pipelineLayout;
 		std::vector<VkCommandBuffer> commandBuffers;
+		std::unique_ptr<Model> model;
 	};
 }

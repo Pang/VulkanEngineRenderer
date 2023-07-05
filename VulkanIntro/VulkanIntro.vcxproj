@@ -142,6 +142,8 @@
     <ClCompile Include="app.cpp" />
     <ClCompile Include="deviceSetup.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="model.cpp" />
+    <ClCompile Include="model.hpp" />
     <ClCompile Include="pipelineSetup.cpp" />
     <ClCompile Include="swapChainSetup.cpp" />
     <ClCompile Include="window.cpp" />
