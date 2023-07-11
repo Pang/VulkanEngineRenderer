@@ -146,7 +146,7 @@ namespace graphicsEngine {
         shaderStages[1].pSpecializationInfo = nullptr;
 
         auto bindingDescriptions = Model::Vertex::getBindingDescriptions();
-        auto attributeDescriptions = Model::Vertex::getBindingAttributes();
+        auto attributeDescriptions = Model::Vertex::getAttributeDescriptions();
 
         VkPipelineVertexInputStateCreateInfo vertexInputInfo{};
         vertexInputInfo.sType = VK_STRUCTURE_TYPE_PIPELINE_VERTEX_INPUT_STATE_CREATE_INFO;

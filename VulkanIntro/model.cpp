@@ -42,8 +42,7 @@ namespace graphicsEngine {
 		vkCmdBindVertexBuffers(commandBuffer, 0, 1, buffers, offsets);
 	}
 
-	std::vector<VkVertexInputBindingDescription> Model::Vertex::getBindingDescriptions()
-	{
+	std::vector<VkVertexInputBindingDescription> Model::Vertex::getBindingDescriptions() {
 		std::vector<VkVertexInputBindingDescription> bindingDescriptions(1);
 		bindingDescriptions[0].binding = 0;
 		bindingDescriptions[0].stride = sizeof(Vertex);
@@ -51,13 +50,18 @@ namespace graphicsEngine {
 		return bindingDescriptions;
 	}
 
-	std::vector<VkVertexInputAttributeDescription> Model::Vertex::getBindingAttributes()
-	{
-		std::vector<VkVertexInputAttributeDescription> attributeDescriptions(1);
+	std::vector<VkVertexInputAttributeDescription> Model::Vertex::getAttributeDescriptions() {
+		std::vector<VkVertexInputAttributeDescription> attributeDescriptions(2);
 		attributeDescriptions[0].binding = 0;
 		attributeDescriptions[0].location = 0;
 		attributeDescriptions[0].format = VK_FORMAT_R32G32_SFLOAT;
-		attributeDescriptions[0].offset = 0;
+		attributeDescriptions[0].offset = offsetof(Vertex, position);
+
+		attributeDescriptions[1].binding = 0;
+		attributeDescriptions[1].location = 1;
+		attributeDescriptions[1].format = VK_FORMAT_R32G32B32_SFLOAT;
+		attributeDescriptions[1].offset = offsetof(Vertex, color);
+
 		return attributeDescriptions;
 	}
 }
