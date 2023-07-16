@@ -12,7 +12,7 @@ namespace graphicsEngine {
 		~Window();
 
 		Window(const Window&) = delete;
-		Window& operator=(const Window&) = delete;
+		Window &operator=(const Window&) = delete;
 
 
 		bool shouldClose() { return glfwWindowShouldClose(glfwWindow); }

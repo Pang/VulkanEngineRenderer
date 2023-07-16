@@ -27,7 +27,7 @@ namespace graphicsEngine {
 		~PipelineSetup();
 
 		PipelineSetup(const PipelineSetup&) = delete;
-		PipelineSetup& operator=(const PipelineSetup&) = delete;
+		PipelineSetup &operator=(const PipelineSetup&) = delete;
 
 		void bind(VkCommandBuffer commandBuffer);
 

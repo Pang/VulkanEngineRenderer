@@ -24,7 +24,7 @@ namespace graphicsEngine {
 		~Model();
 
 		Model(const Window&) = delete;
-		Model& operator=(const Window&) = delete;
+		Model &operator=(const Window&) = delete;
 
 		void bind(VkCommandBuffer commandBuffer);
 		void draw(VkCommandBuffer commandBuffer);

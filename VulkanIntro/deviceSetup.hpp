@@ -36,9 +36,10 @@ namespace graphicsEngine {
 
         // Not copyable or movable
         DeviceSetup(const DeviceSetup&) = delete;
-        void operator=(const DeviceSetup&) = delete;
+        DeviceSetup operator=(const DeviceSetup&) = delete;
+
         DeviceSetup(DeviceSetup&&) = delete;
-        DeviceSetup& operator=(DeviceSetup&&) = delete;
+        DeviceSetup &operator=(DeviceSetup&&) = delete;
 
         VkCommandPool getCommandPool() { return commandPool; }
         VkDevice device() { return device_; }

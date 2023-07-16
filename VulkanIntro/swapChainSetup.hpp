@@ -19,7 +19,7 @@ namespace graphicsEngine {
         ~SwapChainSetup();
 
         SwapChainSetup(const SwapChainSetup&) = delete;
-        void operator=(const SwapChainSetup&) = delete;
+        SwapChainSetup &operator=(const SwapChainSetup&) = delete;
 
         VkFramebuffer getFrameBuffer(int index) { return swapChainFramebuffers[index]; }
         VkRenderPass getRenderPass() { return renderPass; }
