@@ -129,7 +129,7 @@ namespace graphicsEngine {
         if (result != VK_SUCCESS && result != VK_SUBOPTIMAL_KHR) {
             throw std::runtime_error("Failed to acquire swap chain image");
         }
-
+        
         recordCommandBuffer(imageIndex);
         result = swapChainSetup->submitCommandBuffers(&commandBuffers[imageIndex], &imageIndex);
 

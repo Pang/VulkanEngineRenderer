@@ -18,7 +18,7 @@ namespace graphicsEngine {
 		~App();
 
 		App(const App&) = delete;
-		void operator=(const App&) = delete;
+		App &operator=(const App&) = delete;
 
 		void run();
 
