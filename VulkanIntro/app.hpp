@@ -21,6 +21,8 @@ namespace graphicsEngine {
 		void operator=(const App&) = delete;
 
 		void run();
+		void recreateSwapchain();
+		void recordCommandBuffer(int imageIndex);
 
 	private:
 		void loadModels();
@@ -31,7 +33,7 @@ namespace graphicsEngine {
 
 		Window window{ WIDTH, HEIGHT, "Vulkan" };
 		DeviceSetup device{ window };
-		SwapChainSetup swapChainSetup{ device, window.getExtent()};
+		std::unique_ptr<SwapChainSetup> swapChainSetup;
 		std::unique_ptr<PipelineSetup> pipelineSetup;
 		VkPipelineLayout pipelineLayout;
 		std::vector<VkCommandBuffer> commandBuffers;
