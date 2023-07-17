@@ -21,8 +21,7 @@ namespace graphicsEngine {
 		void operator=(const App&) = delete;
 
 		void run();
-		void recreateSwapchain();
-		void recordCommandBuffer(int imageIndex);
+
 
 	private:
 		void loadModels();
@@ -30,6 +29,8 @@ namespace graphicsEngine {
 		void createPipeline();
 		void createCommandBuffers();
 		void drawFrame();
+		void recreateSwapchain();
+		void recordCommandBuffer(int imageIndex);
 
 		Window window{ WIDTH, HEIGHT, "Vulkan" };
 		DeviceSetup device{ window };

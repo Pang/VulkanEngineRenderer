@@ -142,5 +142,4 @@ namespace graphicsEngine {
             throw std::runtime_error("Failed to present swap chain image");
         }
     }
-
 }

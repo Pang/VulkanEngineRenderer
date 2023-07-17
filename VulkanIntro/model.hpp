@@ -1,12 +1,14 @@
 #pragma once
 
-#include "deviceSetup.hpp"
 
 #define GLM_FORCE_RADIANS
 #define GLM_FORCE_DEPTH_ZERO_TO_ONE
 #include "glm/glm.hpp"
 
 #include <vector>
+#include <vulkan/vulkan_core.h>
+#include "window.hpp"
+#include "deviceSetup.hpp"
 
 namespace graphicsEngine {
 	class Model {
